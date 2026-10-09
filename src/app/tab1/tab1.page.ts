@@ -1,90 +1,39 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import {
-  IonButton,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
   IonContent,
   IonHeader,
-  IonInput,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonListHeader,
+  IonNote,
   IonTitle,
   IonToolbar,
 } from '@ionic/angular';
+import { CounterComponent } from '../components/counter/counter.component';
+import { SavedCounter } from '../models/saved-counter';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
   imports: [
-    FormsModule,
-    IonButton,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle,
+    CounterComponent,
     IonContent,
     IonHeader,
-    IonInput,
+    IonItem,
+    IonLabel,
+    IonList,
+    IonListHeader,
+    IonNote,
     IonTitle,
     IonToolbar,
   ],
 })
 export class Tab1Page {
-  counterName = '';
-  count = 0;
-  step = 0;
+  savedCounters: SavedCounter[] = [];
 
-  increment(): void {
-    this.count++;
-  }
-
-  increment5(): void {
-    this.count += 5;
-  }
-
-  decrement(): void {
-    if (this.count > 0) {
-      this.count--;
-    }
-  }
-
-  decrement5(): void {
-    if (this.count >= 5) {
-      this.count -= 5;
-    }
-  }
-
-  incrementStep(step: number) {
-    this.count += step;
-  }
-
-  decrementStep(step: number): void {
-    if (this.count >= step) {
-      this.count -= step;
-    }
-  }
-
-  reset(): void {
-    this.count = 0;
-  }
-
-  resetAll(): void {
-    this.count = 0;
-    this.counterName = '';
-  }
-
-  counterColor() {
-    if (this.count == 0) {
-      return "#FFFFFF";
-    }
-    return "#00f942";
-  }
-
-  preventNegativeNumber(event: KeyboardEvent) {
-    if (event.key == '-') {
-      event.preventDefault();
-    }
+  onSaved(counter: SavedCounter): void {
+    this.savedCounters.unshift(counter);
   }
 }
