@@ -21,9 +21,17 @@
         [(ngModel)]="counterName"
       ></ion-input>
 
-      <p class="counter-value">{{ count }}</p>
+      <p class="counter-value" style="color: {{counterColor()}};">{{ count }}</p>
 
       <div class="counter-actions">
+        <ion-button
+          color="danger"
+          [disabled]="count < 5"
+          (click)="decrement5()"
+        >
+          −5
+        </ion-button>
+
         <ion-button
           color="danger"
           [disabled]="count === 0"
@@ -36,6 +44,30 @@
           +1
         </ion-button>
 
+        <ion-button color="primary" (click)="increment5()">
+          +5
+        </ion-button>
+
+        <ion-button color="danger" [disabled]="count < step" (click)="decrementStep(step)">
+          -{{step}}
+        </ion-button>
+
+        <ion-button color="primary" (click)="incrementStep(step)">
+          +{{step}}
+        </ion-button>
+
+        <ion-input
+        label="Velikost Kroku"
+        label-placement="stacked"
+        fill="outline"
+        placeholder="10"
+        [(ngModel)]="step"
+        type="number"
+        min="0"
+        inputmode="numeric"
+        (keydown)="preventNegativeNumber($event)"
+        ></ion-input>
+
         <ion-button
           color="medium"
           fill="outline"
@@ -43,6 +75,15 @@
           (click)="reset()"
         >
           Reset
+        </ion-button>        
+        
+        <ion-button
+          color="medium"
+          fill="outline"
+          [disabled]="count === 0 && !counterName"
+          (click)="resetAll()"
+        >
+          Reset Name and Number
         </ion-button>
       </div>
     </ion-card-content>
