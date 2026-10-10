@@ -15,24 +15,11 @@
     <p class="counter-value">{{ count }}</p>
 
     <div class="counter-actions">
-      <ion-button
-        color="danger"
-        [disabled]="count === 0"
-        (click)="decrement()"
-      >
-        −1
-      </ion-button>
+      <ion-button color="danger" [disabled]="count === 0" (click)="decrement()"> −1 </ion-button>
 
-      <ion-button color="primary" (click)="increment()">
-        +1
-      </ion-button>
+      <ion-button color="primary" (click)="increment()"> +1 </ion-button>
 
-      <ion-button
-        color="medium"
-        fill="outline"
-        [disabled]="count === 0"
-        (click)="reset()"
-      >
+      <ion-button color="medium" fill="outline" [disabled]="count === 0" (click)="reset()">
         Reset
       </ion-button>
     </div>
